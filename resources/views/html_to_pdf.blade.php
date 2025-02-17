@@ -29,8 +29,8 @@
                 <label class="block">
                     <span class="text-red-700 font-medium">Page Format:</span>
                     <select name="format" id="format" class="mt-1 w-full p-2 border rounded-md focus:ring-2 focus:ring-red-400 focus:outline-none text-sm">
-                        <option value="A5" selected>A5</option>
-                        <option value="A4">A4</option>
+                        <option value="A4" selected>A4</option>
+                        <option value="A5">A5</option>
                         <option value="Letter">Letter</option>
                     </select>
                 </label>
@@ -39,8 +39,8 @@
                     <span class="text-red-700 font-medium">Orientation:</span>
                     <select name="orientation" id="orientation"
                         class="mt-1 w-full p-2 border rounded-md focus:ring-2 focus:ring-red-400 focus:outline-none text-sm">
-                        <option value="L" selected>Landscape</option>
-                        <option value="P">Portrait</option>
+                        <option value="P" selected>Portrait</option>
+                        <option value="L">Landscape</option>
                     </select>
                 </label>
             </div>
