@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Mpdf\Mpdf;
 
@@ -79,5 +80,29 @@ class PDFController extends Controller
         } catch (\Exception $e) {
             return $this->logAndSendInternalErrorResponse($e);
         }
+    }
+
+
+    public function bladeToImage()
+    {
+        if (!class_exists('Imagick')) {
+            return 'Imagick class not found. It may not be enabled for CLI PHP.';
+        }
+
+        $pdfPath = storage_path('app/public/temp.pdf');
+        $imagePath = storage_path('app/public/output.png');
+
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('card', ['name' => 'John Doe']);
+        $pdf->save($pdfPath);
+
+        $imagick = new \Imagick();
+        $imagick->setResolution(150, 150);
+        $imagick->readImage($pdfPath);
+        $imagick->setImageFormat('png');
+        $imagick->writeImage($imagePath);
+        $imagick->clear();
+        $imagick->destroy();
+
+        return response()->download($imagePath);
     }
 }
